@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Text Error Generator - App</title>
+</head>
+<body>
+    <h1>Text Error Generator - App</h1>
+    <form action="{{ url_for('error_generator') }}" method="POST">
+        <label for="input_text">Input Text:</label>
+        <textarea name="input_text" id="input_text" rows="5" cols="50"></textarea>
+        <br>
+        <input type="submit" value="Generate Errors">
+    </form>
+    {% if error_text %}
+    <h2>Text with Errors:</h2>
+    <p>{{ error_text }}</p>
+    {% endif %}
+    <p><a href="{{ url_for('index') }}">Go back to the introduction</a></p>
+</body>
+</html>
