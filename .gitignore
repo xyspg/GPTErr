@@ -1,0 +1,46 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local development files
+.env
+.env.local
+.env.*.local
+
+# Python virtual environment files
+venv/
+env/
+ENV/
+
+# Dependencies installed with pip
+lib/
+lib64/
+local/
+bin/
+build/
+include/
+share/
+pip-selfcheck.json
+
+# IDE files
+.vscode/
+.idea/
+
+# Compiled files
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.dll
+*.exe
+
+# Logs and databases
+*.log
+*.pot
+*.po
+*.mo
+*.db
+*.sqlite3
+.DS_Store
+test.py
