@@ -5,6 +5,17 @@ from nltk.util import bigrams
 
 app = Flask(__name__)
 
+import ssl
+
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+
 @app.route('/')
 def index():
     return render_template('app.html')
