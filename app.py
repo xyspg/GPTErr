@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 import random
 import nltk
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
 from nltk.util import bigrams
 
 app = Flask(__name__)
