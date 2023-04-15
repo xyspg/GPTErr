@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('app.html')
 
 @app.route('/app', methods=['GET', 'POST'])
 def error_generator():
