@@ -5,16 +5,6 @@ from nltk.util import bigrams
 
 app = Flask(__name__)
 
-import ssl
-
-try:
-    _create_unverified_https_context = ssl._create_unverified_context
-except AttributeError:
-    pass
-else:
-    ssl._create_default_https_context = _create_unverified_https_context
-nltk.download('punkt')
-nltk.download('averaged_perceptron_tagger')
 
 @app.route('/')
 def index():
@@ -63,7 +53,7 @@ def introduce_errors(text):
             error_text.append(word)
 
         # Introduce sentence boundary errors
-        if i < len(pos_tags) - 1 and pos_tags[i+1][1] in [".", "!", "?"] and random.random() < 0.15:
+        if i < len(pos_tags) - 1 and pos_tags[i + 1][0] in [".", "!", "?"] and random.random() < 0.15:
             if error_text[-1] != ",":
                 error_text.append(",")
 
@@ -80,4 +70,4 @@ def introduce_errors(text):
     return ' '.join(error_text)
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
