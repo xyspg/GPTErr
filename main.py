@@ -1,24 +1,41 @@
-from flask import Flask, render_template, request, redirect, url_for
 import random
 import nltk
+from typing import Optional
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+import ssl
+
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
 from nltk.util import bigrams
 
-app = Flask(__name__)
+app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
-@app.route('/')
-def index():
-    return render_template('app.html')
+class ErrorRequest(BaseModel):
+    input_text: str
 
-@app.route('/app', methods=['GET', 'POST'])
-def error_generator():
-    if request.method == 'POST':
-        text = request.form['input_text']
-        error_text = introduce_errors(text)
-        return render_template('app.html', error_text=error_text)
-    return render_template('app.html')
+
+@app.post("/app")
+def error_generator(request: ErrorRequest):
+    text = request.input_text
+    error_text = introduce_errors(text)
+    return {"error_text": error_text}
+
 
 def introduce_errors(text):
     words = nltk.word_tokenize(text)
@@ -71,5 +88,7 @@ def introduce_errors(text):
 
     return ' '.join(error_text)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, log_level="info")
