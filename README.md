@@ -9,6 +9,6 @@ Flask backend + Next.js Frontend
 ## Features
 
 - Generate grammar mistakes like add an unnecessary article before a noun, change the verb form incorrectly, Pronouns,
-  Sentence Boundaries, Subordination and Coordination, Parallel Structure, and Modifier Placement
+  Sentence Boundaries, Subordination and Coordination, and Parallel Structure
 
 ![](demo.png)
