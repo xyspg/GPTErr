@@ -54,7 +54,7 @@ export default function Generate() {
   return (
     <Container className="text-center pt-4">
       <form onSubmit={handleSubmit}>
-        <div className="grid w-2/3 mx-auto gap-2 gap-y-2 ">
+        <div className="grid w-full md:w-2/3 mx-auto gap-2 gap-y-2 ">
           <Textarea
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
