@@ -27,7 +27,7 @@ const Footer = () => {
                 </svg>
             </Link>
             <div className="mb-2">
-                <p className="font-display text-slate-600 text-xs">
+                <p className="font-display text-slate-600 text-xs dark:text-slate-500">
                     GPTErr has been developed solely for the purpose of academic research and is not intended to endorse any form of academic dishonesty. Its primary function is to showcase the limitations of AI detection software, and it is strongly advised against utilizing it for academic fraud or to present AI-generated content as original work.
                 </p>
             </div>

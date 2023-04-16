@@ -75,7 +75,7 @@ export default function Generate() {
           {errorText && (
             <div>
               <p
-                className="text-center mt-8 px-4 py-4 shadow-md rounded-xl border transition hover:bg-gray-100 dark:hover:bg-gray-800 cursor-copy"
+                className="text-center mt-8 px-4 py-4 shadow-md rounded-xl border dark:border-slate-700 transition hover:bg-gray-100 dark:hover:bg-gray-800 cursor-copy dark:text-white"
                 data-clipboard-text={errorText}
               >
                 {errorText}
