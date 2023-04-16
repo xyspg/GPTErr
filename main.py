@@ -5,8 +5,10 @@ from typing import Optional
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-import ssl
+from dotenv import load_dotenv
+load_dotenv()
 
+import ssl
 try:
     _create_unverified_https_context = ssl._create_unverified_context
 except AttributeError:
@@ -42,6 +44,8 @@ def error_generator(request: ErrorRequest):
     return {"error_text": error_text}
 
 
+import string
+
 def introduce_errors(text):
     words = nltk.word_tokenize(text)
     pos_tags = nltk.pos_tag(words)
@@ -75,17 +79,25 @@ def introduce_errors(text):
                 error_text.append(word)
         else:
             error_text.append(word)
+
     # Shuffle conjunctions to introduce subordination, coordination, and parallel structure errors
     for i, ((_, pos1), (_, pos2)) in enumerate(pos_bigrams):
         if pos1 in ["CC", "IN"] and random.random() < 0.15:
-            error_text[i], error_text[i + 1] = error_text[i + 1], error_text[i]
+            idx = i+1
+            while idx < len(pos_tags) and pos_tags[idx][1] in string.punctuation:
+                idx += 1
+            error_text[i], error_text[idx] = error_text[idx], error_text[i]
 
     # Introduce modifier placement errors
     for i, (word, pos) in enumerate(pos_tags[:-1]):
         if pos.startswith("JJ") and pos_tags[i + 1][1].startswith("NN") and random.random() < 0.15:
-            error_text[i], error_text[i + 1] = error_text[i + 1], error_text[i]
+            idx = i+1
+            while idx < len(pos_tags) and pos_tags[idx][1] in string.punctuation:
+                idx += 1
+            error_text[i], error_text[idx] = error_text[idx], error_text[i]
 
-    return ' '.join(error_text)
+    return ''.join([' ' + word if word not in string.punctuation else word for word in error_text]).strip()
+
 
 if __name__ == "__main__":
     import uvicorn
