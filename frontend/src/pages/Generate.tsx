@@ -42,7 +42,6 @@ export default function Generate() {
       console.error(err);
     }
     setLoading(false);
-    console.log(errorText);
   };
 
 
@@ -76,7 +75,7 @@ export default function Generate() {
           {errorText && (
             <div>
               <p
-                className="text-center mt-8 px-4 py-4 shadow-md rounded-xl border transition hover:bg-gray-100 cursor-copy"
+                className="text-center mt-8 px-4 py-4 shadow-md rounded-xl border transition hover:bg-gray-100 dark:hover:bg-gray-800 cursor-copy"
                 data-clipboard-text={errorText}
               >
                 {errorText}

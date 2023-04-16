@@ -43,3 +43,4 @@ pip-selfcheck.json
 *.sqlite3
 .DS_Store
 test.py
+local.py
