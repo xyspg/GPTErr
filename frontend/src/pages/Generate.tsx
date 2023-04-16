@@ -28,7 +28,7 @@ export default function Generate() {
   const handleSubmit = async (e:any) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://127.0.0.1:8000/app", {
+      const response = await axios.post("https://gpterr.onrender.com/app", {
         input_text: inputText,
       });
       setErrorText(response.data.error_text);
