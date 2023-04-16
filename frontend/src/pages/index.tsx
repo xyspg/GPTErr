@@ -1,5 +1,5 @@
 import Generate from "@/pages/Generate";
-import { PrimaryFeatures } from "@/pages/Features";
+import PrimaryFeatures from "@/pages/Features";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <PrimaryFeatures />
       <Generate />
-        <Footer />
+      <Footer />
     </>
   );
 }
