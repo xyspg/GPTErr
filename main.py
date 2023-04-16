@@ -1,4 +1,5 @@
 import random
+import os
 import nltk
 from typing import Optional
 from fastapi import FastAPI
@@ -17,9 +18,13 @@ nltk.download('averaged_perceptron_tagger')
 from nltk.util import bigrams
 
 app = FastAPI()
+allowed_origins = os.environ.get("ALLOWED_ORIGINS", "").split(",")
+if not allowed_origins:
+    raise ValueError("No allowed origins set in the environment variable ALLOWED_ORIGINS")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
