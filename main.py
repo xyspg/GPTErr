@@ -75,12 +75,6 @@ def introduce_errors(text):
                 error_text.append(word)
         else:
             error_text.append(word)
-
-        # Introduce sentence boundary errors
-        if i < len(pos_tags) - 1 and pos_tags[i + 1][0] in [".", "!", "?"] and random.random() < 0.15:
-            if error_text[-1] != ",":
-                error_text.append(",")
-
     # Shuffle conjunctions to introduce subordination, coordination, and parallel structure errors
     for i, ((_, pos1), (_, pos2)) in enumerate(pos_bigrams):
         if pos1 in ["CC", "IN"] and random.random() < 0.15:

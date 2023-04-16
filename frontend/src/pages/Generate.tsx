@@ -30,7 +30,11 @@ export default function Generate() {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post("https://gpterr.onrender.com/app", {
+      const url =
+          process.env.NODE_ENV === "development"
+              ? "http://127.0.0.1:8000/app"
+              : "https://gpterr.onrender.com/app";
+      const response = await axios.post(url, {
         input_text: inputText,
       });
       setErrorText(response.data.error_text);
@@ -39,6 +43,7 @@ export default function Generate() {
     }
     setLoading(false);
   };
+
 
   const EnterKeySubmit = (e: any) => {
     if (e.key === "Enter") {
