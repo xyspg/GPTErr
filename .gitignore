@@ -14,7 +14,6 @@ env/
 ENV/
 
 # Dependencies installed with pip
-lib/
 lib64/
 local/
 bin/

@@ -3,7 +3,8 @@
 ## Generate grammar errors to bypass GPT detectors.
 
 This project does not use any GPT model. Only simple algorithms. No need to worry anymore.
-Current grammar mistakes generated
+Flask backend + Next.js Frontend
+
 
 ## Features
 
