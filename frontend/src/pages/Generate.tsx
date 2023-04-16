@@ -70,7 +70,7 @@ export default function Generate() {
           />
           <Button type="submit" disabled={loading}>
             {loading ?
-                `Loading...`
+                `Generating...`
                 : `Generate Errors`}
           </Button>
           {errorText && (
